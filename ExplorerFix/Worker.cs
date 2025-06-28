@@ -20,11 +20,9 @@ namespace ExplorerFix
                     var processes = Process.GetProcessesByName("explorer");
                     foreach (Process process in processes)
                     {
-                        if (process.WorkingSet64 > 500 * 1024 * 1024)
+                        if (process.WorkingSet64 > 256 * 1024 * 1024)
                         {
                             process.Kill();
-                            await Task.Delay(500);
-                            Process.Start("explorer");
                         }
                     }
                     await Task.Delay(3000, stoppingToken);
